@@ -1,6 +1,7 @@
 .die{
     display: inline-block;
-    padding-right: 12%;
+    padding-right: 14.5%;
+
 }
 .roll{
     display: inline-block;
@@ -20,4 +21,28 @@
     padding: 2% 1% 2% 1.5%;
     border: 1px solid black;
     width: 20%;
+}
+
+.labels{
+    padding: -1% -1% -1% -1%;
+    margin: -1% -1% -1% -1%;
+
+}
+.right{
+
+    /*display: inline;*/
+   /*text-align: right;*/
+    float: right;
+    padding-left: 40px;
+    padding-right: 10px;
+
+}
+
+.input{
+    float: right;
+    padding: 1px 1px 1px 1px;
+    width: 6%;
+    text-align: center;
+    margin-right: 2%;
+    margin-left: 12%;
 }
