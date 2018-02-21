@@ -3,8 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <title>Yatzy</title>
+    <script src="yatzy.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 
+<div class="dicegroup">
+    <p class="die">d1</p>
+    <p class="die">d2</p>
+    <p class="die">d3</p>
+    <p class="die">d4</p>
+    <p class="die">d5</p>
+    <br>
+    <p>Turn 1</p>
+    <br>
+    <button class="roll" value="Roll!">Roll!</button>
+</div>
+
+<div id="results">
+    <p class="labels">1-s</p><br>
+    <p class="labels">2-s</p><br>
+    <p class="labels">3-s</p><br>
+    <p class="labels">4-s</p><br>
+    <p class="labels">5-s</p><br>
+    <p class="labels">6-s</p>
+    <p class="labels right">Sum:</p>
+    <p class="labels right">Bonus:</p><br>
+    <input type="text" id="sumField" class="right input" value="22" readonly>
+    <input type="text" id="bonusField" class="right input" value="22" readonly>
+    <p class="labels">One pair</p><br>
+    <p class="labels">Two pairs</p><br>
+    <p class="labels">Three same</p><br>
+    <p class="labels">Four same</p><br>
+    <p class="labels">Full house</p><br>
+    <p class="labels">Small straight</p><br>
+    <p class="labels">Large straight</p><br>
+    <p class="labels">Chance</p><br>
+    <p class="labels">Yatzy</p><br>
+    <p class="labels right">Total</p><br>
+    <input type="text" id="totalField" class="right input" value="22" readonly><br>
+
+
+
+
+
+
+
+</div>
 </body>
 </html>

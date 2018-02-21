@@ -1,0 +1,23 @@
+.die{
+    display: inline-block;
+    padding-right: 12%;
+}
+.roll{
+    display: inline-block;
+    float: right;
+    padding: 1% 1% 1% 1%;
+    margin: -10% 5% 0px 0px;
+}
+.dicegroup{
+    padding: 2% 1% 2% 1.5%;
+    border: 1px solid black;
+    width: 20%;
+    margin: 1% 1% 1% 1%;
+}
+
+#results{
+    margin: 1% 1% 1% 1%;
+    padding: 2% 1% 2% 1.5%;
+    border: 1px solid black;
+    width: 20%;
+}
