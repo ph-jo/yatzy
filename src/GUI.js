@@ -8,13 +8,20 @@ function updateDice(){
     for(var i = 0; i < dice.length; i++){
         if(holds[i] === false)  dieField[i].innerHTML = ("<img src=\"images/" + links[dice[i]-1] + "\">");
     }
+    $("#throw").innertext = "Throw " + turn.toString();
+    console.log($("#throw"));
 }
 
 function clear(){
     var fields = $(".results");
-    fields.foreach(function(element){
-        element.text = "";
-    });
+    for(var i = 0; i < fields.length; i++){
+        fields[i].value = ("");
+    }
+
+
+    $(".results").removeClass("locked");
+    return;
+
 }
 
 //funktioner der kører på page load
@@ -28,9 +35,14 @@ $(function(){
 
   });
   //save-function når man klikker på et result felt
-  $(".clear").on("click", function() {
-    clear();
+  $(".resetBtn").on("click", function() {
+      clear();
+  });
 
+  $(".results").on("click", function() {
+      if($(this).hasClass("locked")) return;
+      $(this).addClass("locked");
+      return;
   });
 
 
