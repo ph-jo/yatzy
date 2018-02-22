@@ -14,16 +14,14 @@ $(function(){
       throwdice();
       turn++;
       updateDice();
-      console.log(dice);
+
   })
 
     $(".die").on("click", function(){
         if(!$(this).hasClass("held")){
-            console.log("Dice number: " + $(this).attr("id") + " is now being held");
             $(this).addClass("held");
             holds[Number($(this).attr("id")-1)] = true;
         }else{
-            console.log("Dice number: " + $(this).attr("id") + " is no longer being held");
             $(this).removeClass("held");
             holds[Number($(this).attr("id")-1)] = false;
         }

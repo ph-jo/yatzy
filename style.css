@@ -6,6 +6,7 @@
 .die img{
     width: 64px;
     height: 64px;
+    border: 1px solid black;
 }
 .roll{
     display: inline-block;
@@ -67,8 +68,6 @@
 }
 
 .held{
-    border: 1px solid black;
-}
-.notheld{
-    border: none;
+    background-color: red;
+
 }
