@@ -25,19 +25,14 @@
 
 var dice = [0, 0, 0, 0, 0];
 var holds = [false, false, false, false, false];
-
+var turn = 1;
 /*
 Sætter alle 5 elementer i dice-array til et tilfældigt tal mellem 1 og 6
  */
 function throwdice(){
     for(var i = 0; i < dice.length; i++){
         if(holds[i]==false) dice[i] = Math.ceil(Math.random()*6);
-
     }
 }
 
-
-function hold(){
-
-}
 

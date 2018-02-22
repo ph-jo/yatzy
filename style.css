@@ -1,6 +1,6 @@
 .die{
     display: inline-block;
-    padding-right: 2%;
+    padding-right: 1.5%;
 
 }
 .die img{
@@ -12,6 +12,7 @@
     float: right;
     padding: 1% 1% 1% 1%;
     margin: -10% 5% 0px 0px;
+
 }
 .dicegroup{
     padding: 2% 1% 2% 1.5%;
@@ -65,3 +66,9 @@
 
 }
 
+.held{
+    border: 1px solid black;
+}
+.notheld{
+    border: none;
+}
