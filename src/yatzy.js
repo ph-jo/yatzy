@@ -40,4 +40,160 @@ function throwdice(){
     turn++;
 }
 
+/*
+Hjælpefunktion til at finde antallet af terninger med værdien 1-6
+ */
+function frequency() {
+    var frequencies = [0, 0, 0, 0, 0, 0 ,0];
+    for (var i = 1; i < 6; i++) {
+        frequencies[i] = 0;
+        for (var j = 0; j < dice.length; j++) {
+            if (i === j) {
+                frequencies[i] = frequencies[i] + 1;
+            }
+        }
+    }
+    return frequencies;
+}
+
+/*
+Bruges til x antal af en værdi
+ */
+function sameValuePoints(facevalue) {
+    var points = 0;
+    for (var i = 0; i < this.dice.length; i++){
+        if (this.dice[i] === facevalue) {
+            points = points + facevalue;
+        }
+    }
+    return points;
+}
+
+/*
+Returnerer point for et par
+*/
+function onePairPoints() {
+    var points = 0;
+    var frequencies[] = this.frequency();
+    for (var i = 0; i < 7; i++) {
+        if (frequencies[i] >= 2) {
+            points = 2 * i;
+        }
+    }
+    return points;
+}
+
+/*
+Returnerer point for to par
+Pairs variablen tæller antallet af par
+ */
+function twoPairPoints() {
+    var points = 0;
+    var frequencies[] = this.frequency();
+    var pairs = 0;
+    for (var i = 0; i < 7; i++) {
+        if (frequencies[i] >= 2) {
+            points = points + 2 * i;
+            pairs += 1;
+        }
+    }
+    if (pairs !== 2) {
+        points = 0;
+    }
+    return points; 
+}
+
+/*
+Returnerer point for tre ens
+ */
+function threeSamePoints() {
+    var points = 0;
+    var frequencies[] = this.frequency();
+    for (var i = 0; i < 7; i++) {
+        if (frequencies[i] >= 3) {
+            points = 3 * i;
+        }
+    }
+    return points;
+}
+
+/*
+Returnerer point for fire ens
+ */
+function fourSamePoints() {
+    var points = 0;
+    var frequencies[] = this.frequency();
+    for (var i = 0; i < 7; i++) {
+        if (frequencies[i] >= 4) {
+            points = 4 * i;
+        }
+    }
+    return points;
+}
+
+/*
+Returnerer point for fuldt hus
+ */
+function fullHousePoints() {
+    var points = 0;
+    var threeSame = this.threeSamePoints();
+    if (threeSame === 0) {
+        return 0;
+    }
+    for (var i = 0; i < threeSame / 3; i++) {
+        if (frequencies[i] >= 2) {
+            points = threeSame + 2 * i;
+        }    
+    }
+    return points;
+}
+
+/*
+Returnerer point fra en small straight
+Checker om der er præcis en af 1, 2, 3, 4 og 5
+ */
+function smallStraightPoints() {
+    var points = 15;
+    var frequencies[] = this.frequency();
+    for (var i = 1; i < 6; i++) {
+        if (frequencies[i] !== 1) {
+            points = 0;
+        }
+    }
+    return points;
+}
+
+/*
+Returnerer point fra en large straight
+Checker om der er præcis en af 2, 3, 4, 5 og 6
+ */
+function largeStraightPoints() {
+    var points = 20;
+    var frequencies[] = this.frequency();
+    for (var i = 2; i < 7; i++) {
+        if (frequencies[i] !== 1) {
+            points = 0;
+        }
+    }
+    return points;
+}
+
+function chancePoints() {
+    var points = 0;
+    for (var i = 0; i < this.dice.length; i++) {
+        points = points + this.dice[i];
+    }
+    return points;
+}
+
+function yaztyPoints() {
+    var points = 0;
+    var frequencies[] = this.frequency();
+    for (var i = 0; i < 7; i++) {
+        if (frequencies[i] === 5) {
+            points = 50;
+        }
+    }
+    return points;
+}
 
