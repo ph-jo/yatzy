@@ -1,5 +1,5 @@
 
-@media screen and (min-width: 500px){
+@media screen and (max-width: 400em){
     /*
 dice-pane, øverste firkant
 */
@@ -21,14 +21,15 @@ dice-pane, øverste firkant
     }
 
 
+
     .die{
         display: inline-block;
         padding-right: 1.5em;
     }
 
     .die img{
-        width: 64px;
-        height: 64px;
+        width: 3em;
+        height: 3em;
         border: 1px solid black;
     }
 
