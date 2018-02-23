@@ -27,7 +27,7 @@
 
 var dice = [0, 0, 0, 0, 0];
 var holds = [false, false, false, false, false];
-var turn = 1;
+var turn = 0;
 
 
 /*
@@ -197,3 +197,14 @@ function yaztyPoints() {
     return points;
 }
 
+function holdDie(die){
+    holds[die] = true;
+}
+
+function freeDie(die){
+    holds[die] = false;
+}
+
+function freqFaceValue(){
+    for(var i = 0; i < dice.length; i++){
+}
