@@ -74,7 +74,7 @@ Returnerer point for et par
 */
 function onePairPoints() {
     var points = 0;
-    var frequencies[] = this.frequency();
+    var frequencies = this.frequency();
     for (var i = 0; i < 7; i++) {
         if (frequencies[i] >= 2) {
             points = 2 * i;
@@ -89,7 +89,7 @@ Pairs variablen tæller antallet af par
  */
 function twoPairPoints() {
     var points = 0;
-    var frequencies[] = this.frequency();
+    var frequencies = this.frequency();
     var pairs = 0;
     for (var i = 0; i < 7; i++) {
         if (frequencies[i] >= 2) {
@@ -108,7 +108,7 @@ Returnerer point for tre ens
  */
 function threeSamePoints() {
     var points = 0;
-    var frequencies[] = this.frequency();
+    var frequencies = this.frequency();
     for (var i = 0; i < 7; i++) {
         if (frequencies[i] >= 3) {
             points = 3 * i;
@@ -122,7 +122,7 @@ Returnerer point for fire ens
  */
 function fourSamePoints() {
     var points = 0;
-    var frequencies[] = this.frequency();
+    var frequencies = this.frequency();
     for (var i = 0; i < 7; i++) {
         if (frequencies[i] >= 4) {
             points = 4 * i;
@@ -154,7 +154,7 @@ Checker om der er præcis en af 1, 2, 3, 4 og 5
  */
 function smallStraightPoints() {
     var points = 15;
-    var frequencies[] = this.frequency();
+    var frequencies = this.frequency();
     for (var i = 1; i < 6; i++) {
         if (frequencies[i] !== 1) {
             points = 0;
@@ -169,7 +169,7 @@ Checker om der er præcis en af 2, 3, 4, 5 og 6
  */
 function largeStraightPoints() {
     var points = 20;
-    var frequencies[] = this.frequency();
+    var frequencies = this.frequency();
     for (var i = 2; i < 7; i++) {
         if (frequencies[i] !== 1) {
             points = 0;
@@ -188,7 +188,7 @@ function chancePoints() {
 
 function yaztyPoints() {
     var points = 0;
-    var frequencies[] = this.frequency();
+    var frequencies = this.frequency();
     for (var i = 0; i < 7; i++) {
         if (frequencies[i] === 5) {
             points = 50;
@@ -205,6 +205,7 @@ function freeDie(die){
     holds[die] = false;
 }
 
-function freqFaceValue(){
-    for(var i = 0; i < dice.length; i++){
+function freqFaceValue() {
+    for (var i = 0; i < dice.length; i++) {
+    }
 }

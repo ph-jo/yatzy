@@ -8,14 +8,12 @@ function updateDice(){
     for(var i in dice){
         if(!holds[i]) dieField[i].innerHTML = ("<img src=\"images/" + links[dice[i]-1] + "\">");
     }
-    console.log(turn);
+
 
     //Hvis man har slået for 3. gang, låses alle terninger
     if(turn === 3){
-        console.log("lul");
-        console.log($("#throw")[0].innerText);
-        $(".die").addClass("held");
         holdAll();
+        $(".roll").addClass("invis");
 
         $("#throw")[0].innerText = "No more throws, please click a field to save your score";
     }else{
@@ -47,14 +45,7 @@ function clear(){
 //funktioner der kører på page load
 $(function(){
 
-    //roll-button funktionalitet
-  $(".roll").on("click", function() {
-      throwdice();
-      updateDice();
-      return;
 
-
-  });
     //knap til at genstarte spillet, rydder brættet
   $(".resetBtn").on("click", function() {
       clear();
@@ -68,11 +59,11 @@ $(function(){
       $(this).addClass("locked");
       freeAll();
       turn = 0;
-      $("#throw").innerText = "You saved a score of ";
+      $("#throw")[0].innerText = "Throw: 1 of 3";
+      $(".roll").removeClass("invis");
       return;
 
   });
-
 
     //hold-funktionalitet når man clicker på terninger
     $(".die").on("click", function(){
@@ -85,7 +76,20 @@ $(function(){
             // holds[Number($(this).attr("id")-1)] = false;
             freeDie(Number($(this).attr("id")-1));
         }
-    })
+    });
+
+
+    //roll-button funktionalitet
+    $(".roll").on("click", function() {
+        console.log(turn);
+        if(Number(turn) < 3){
+            throwdice();
+            updateDice();
+        }
+        return;
+
+    });
+
 });
 
 
