@@ -27,7 +27,7 @@
 
 var dice = [0, 0, 0, 0, 0];
 var turn = 0;
-var sum = 0;
+var total = 0;
 
 
 /*

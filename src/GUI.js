@@ -13,26 +13,28 @@ function updateDice(){
 
     }
     turn++;
-    console.log(dice);
 }
 
 function updateResults(){
   var results = getResults();
   for(i in results){
-     if(!$(".results").eq(i).hasClass("locked")) $(".results")[i].value = results[i];
+     if(!$(".results").eq(i).hasClass("locked")){
+         $(".results")[i].value = results[i];
+     }
   }
 }
 
 
 
 function clear(){
-    var fields = $(".results");
+    var fields = $("input");
     for(i in fields){
         fields[i].value = ("");
     }
     $(".die").removeClass("held");
-
+    $(".results").removeClass("fakelock");
     $(".results").removeClass("locked");
+
     return;
 
 }
@@ -58,6 +60,7 @@ $(function(){
             console.log($(".die").eq(Number(i)).hasClass("held"));
             console.log($(".die").eq(i).attr("id"));
         }
+        $(".results").removeClass("fakelock");
 
     })
 
@@ -65,7 +68,9 @@ $(function(){
     //knap til at genstarte spillet, rydder brættet
   $(".resetBtn").on("click", function() {
       clear();
-
+      turn = 0;
+      dice = [0, 0, 0, 0, 0, 0];
+      total = 0;
 
         });
 
@@ -74,10 +79,17 @@ $(function(){
       if($(this).hasClass("locked") || turn === 0){
           return;
       }
+
+
+      total += Number($(this)[0].value);
+
+      //Låser valgte felt og viser lignende effekt på alle felter, så brugeren ikke tror han kan klikke
+      //på andre felter
+      $(".results").addClass("fakelock");
       $(this).addClass("locked");
+      $("#totalField")[0].value = total;
       freeAll();
       turn = 0;
-
       $("#throw")[0].innerText = "Roll the dice!";
       $(".roll").removeClass("invis");
       return;
@@ -102,11 +114,11 @@ $(function(){
 
     //roll-button funktionalitet
     $(".roll").on("click", function() {
-        console.log(turn);
         if(Number(turn) < 3){
-
+            $(".results").removeClass("fakelock");
             updateDice();
             updateResults();
+
             //Hvis man har slået for 3. gang, låses alle terninger
             if(turn === 3){
                 holdAll();
