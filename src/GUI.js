@@ -62,7 +62,7 @@ $(function(){
         }
         $(".results").removeClass("fakelock");
 
-    })
+    });
 
 
     //knap til at genstarte spillet, rydder brættet
@@ -71,23 +71,38 @@ $(function(){
       turn = 0;
       dice = [0, 0, 0, 0, 0, 0];
       total = 0;
-
+      $("#throw")[0].innerText = "Roll the dice!";
         });
 
     //save-function når man klikker på et result felt
   $(".results").on("click", function() {
-      if($(this).hasClass("locked") || turn === 0){
-          return;
+      if($(this).hasClass("locked") || turn === 0) return;
+
+
+      //håndterer sum/bonus
+      if($(this).hasClass("ofKind")){
+          sum += Number($(this)[0].value);
+          $("#sumField")[0].value = sum;
+
+          if(sum >= 63 && $("#bonusField")[0].value < 0) $("#bonusField")[0].value = 50; total+= 50;
       }
-
-
+      //gemmer total score og sætter værdi på total-felt
       total += Number($(this)[0].value);
+      $("#totalField")[0].value = total;
+      console.log($(this).hasClass("ofKind"));
+
+
+      // $(this).
+      // if($(".results")[this].indexOf($(this)) < 5){
+      //     sum += Number($(this)[0].value);
+      //     $("sumField")[0].value = sum;
+      // }
+
 
       //Låser valgte felt og viser lignende effekt på alle felter, så brugeren ikke tror han kan klikke
       //på andre felter
       $(".results").addClass("fakelock");
       $(this).addClass("locked");
-      $("#totalField")[0].value = total;
       freeAll();
       turn = 0;
       $("#throw")[0].innerText = "Roll the dice!";
@@ -100,7 +115,7 @@ $(function(){
     $(".die").on("click", function(){
         //man burde ikke kunne holde før man slår med terningerne
 
-        if(turn === 0) return;
+        if(turn === 0 || turn === 3) return;
 
         if(!$(this).hasClass("held")){
             $(this).addClass("held");

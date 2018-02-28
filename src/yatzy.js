@@ -28,7 +28,7 @@
 var dice = [0, 0, 0, 0, 0];
 var turn = 0;
 var total = 0;
-
+var sum = 0;
 
 /*
 Hjælpefunktion til at finde antallet af terninger med værdien 1-6
