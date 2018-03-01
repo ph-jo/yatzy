@@ -25,7 +25,14 @@
 
 
 
-var dice = [0, 0, 0, 0, 0];
+var dice = [
+    { value: 0, hold: false },
+    { value: 0, hold: false },
+    { value: 0, hold: false },
+    { value: 0, hold: false },
+    { value: 0, hold: false },
+    { value: 0, hold: false },
+    ];
 var turn = 0;
 var total = 0;
 var sum = 0;
@@ -37,7 +44,7 @@ function frequency() {
     var frequencies = [0, 0, 0, 0, 0, 0];
 
     for(i in dice){
-        frequencies[dice[i]-1]++;
+        frequencies[dice[i].value-1]++;
     }
 
     return frequencies;
@@ -49,7 +56,7 @@ Bruges til x antal af en værdi
 function sameValuePoints(facevalue) {
     var points = 0;
     for (i in dice){
-        if (this.dice[i] === facevalue) {
+        if (this.dice[i].value === facevalue) {
             points = points + facevalue;
         }
     }
@@ -164,7 +171,7 @@ function largeStraightPoints() {
 function chancePoints() {
     var points = 0;
     for (i in dice) {
-        points += this.dice[i];
+        points += this.dice[i].value;
     }
     return points;
 }

@@ -7,8 +7,8 @@ function updateDice(){
     var dieField = $(".die");
     for(var i in dice){
         if(!$(".die").eq(i).hasClass("held")) {
-            dice[i] = Math.ceil(Math.random()*6);
-            dieField[i].innerHTML = ("<img src=\"images/" + links[dice[i]-1] + "\">");
+            dice[i].value = Math.ceil(Math.random()*6);
+            dieField[i].innerHTML = ("<img src=\"images/" + links[dice[i].value-1] + "\">");
         }
 
     }
