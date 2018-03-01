@@ -25,7 +25,7 @@
 
 
 
-var dice = { value, hold } = [
+var dice = [
     { value: 0, hold: false },
     { value: 0, hold: false },
     { value: 0, hold: false },
