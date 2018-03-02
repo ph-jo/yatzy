@@ -8,7 +8,9 @@ function updateDice(){
     for(var i in dice){
         if(!$(".die").eq(i).hasClass("held")) {
             dice[i].value = Math.ceil(Math.random()*6);
+            console.log("<img src=\"images/" + links[dice[i].value-1] + "\">");
             dieField[i].innerHTML = ("<img src=\"images/" + links[dice[i].value-1] + "\">");
+
         }
 
     }
@@ -32,8 +34,9 @@ function clear(){
         fields[i].value = ("");
     }
     $(".die").removeClass("held");
-    $(".results").removeClass("fakelock");
-    $(".results").removeClass("locked");
+    $(".results").removeClass("fakelock locked");
+
+
 
     return;
 
@@ -42,36 +45,20 @@ function clear(){
 //funktioner der kører på page load
 $(function(){
 
-//debug knap
-    $(".debug").on("click", function() {
-        console.log(getResults());
-        return;
-
-    });
-
-    //debug roll
-    $(".debugRoll").on("click", function(){
-
-
-        updateDice();
-        updateResults();
-
-        for(var i in dice){
-            console.log($(".die").eq(Number(i)).hasClass("held"));
-            console.log($(".die").eq(i).attr("id"));
-        }
-        $(".results").removeClass("fakelock");
-
-    });
-
-
     //knap til at genstarte spillet, rydder brættet
   $(".resetBtn").on("click", function() {
       clear();
       turn = 0;
-      dice = [0, 0, 0, 0, 0, 0];
+      dice = [
+          { value: 0},
+          { value: 0},
+          { value: 0},
+          { value: 0},
+          { value: 0}
+      ];
       total = 0;
-      $("#throw")[0].innerText = "Roll the dice!";
+      $(".roll").removeClass("invis");
+      $("#throw")[0].innerText = "Rul med terningerne!";
         });
 
     //save-function når man klikker på et result felt
@@ -84,38 +71,43 @@ $(function(){
           sum += Number($(this)[0].value);
           $("#sumField")[0].value = sum;
 
-          if(sum >= 63 && $("#bonusField")[0].value < 0) $("#bonusField")[0].value = 50; total+= 50;
+          if(sum >= 63 && $("#bonusField")[0].value < 0){
+              $("#bonusField")[0].value = 50;
+              total+= 50;
+          }
       }
       //gemmer total score og sætter værdi på total-felt
       total += Number($(this)[0].value);
       $("#totalField")[0].value = total;
-      console.log($(this).hasClass("ofKind"));
-
-
-      // $(this).
-      // if($(".results")[this].indexOf($(this)) < 5){
-      //     sum += Number($(this)[0].value);
-      //     $("sumField")[0].value = sum;
-      // }
 
 
       //Låser valgte felt og viser lignende effekt på alle felter, så brugeren ikke tror han kan klikke
       //på andre felter
       $(".results").addClass("fakelock");
       $(this).addClass("locked");
-      freeAll();
-      turn = 0;
-      $("#throw")[0].innerText = "Roll the dice!";
-      $(".roll").removeClass("invis");
-      return;
 
+      //fjerner holds fra terninger
+      freeAll();
+
+
+      turn = 0;
+      $("#throw")[0].innerText = "Rul med terningerne!";
+
+      if(completionCheck()){
+          if(confirm("Din score er: " + total + "\nTryk på OK for at starte et nyt spil.")) {
+              $(".resetBtn").trigger("click");
+
+          }
+      }else{
+          $(".roll").removeClass("invis");
+      }
+      return;
   });
 
     //hold-funktionalitet når man clicker på terninger
     $(".die").on("click", function(){
         //man burde ikke kunne holde før man slår med terningerne
-
-        if(turn === 0 || turn === 3) return;
+        if(turn === 0 || turn === 3 || completionCheck()) return;
 
         if(!$(this).hasClass("held")){
             $(this).addClass("held");
@@ -126,33 +118,53 @@ $(function(){
         }
     });
 
-
     //roll-button funktionalitet
     $(".roll").on("click", function() {
+        if(completionCheck()) return;
+
         if(Number(turn) < 3){
             $(".results").removeClass("fakelock");
             updateDice();
             updateResults();
-
+            console.log("lul");
             //Hvis man har slået for 3. gang, låses alle terninger
             if(turn === 3){
                 holdAll();
                 $(".roll").addClass("invis");
 
-                $("#throw")[0].innerText = "No more throws, please click a field to save your score";
+                $("#throw")[0].innerText = "Ikke flere kast, tryk på et felt forneden for at gemme score.";
             }else{
                 var temp = 3-turn;
-                $("#throw")[0].innerText = "Rolls left: " + temp + ". Click on a die to lock its value.";
+                $("#throw")[0].innerText = "Kast tilbage: " + temp + ". Klik på en terning for at låse den.";
             }
-
         }
         return;
-
     });
 
+    //Hotkey funktionalitet, J(keycode 74) for rul og K for
+    $(document).on("keydown", function(key){
+        if(key.keyCode === 74){
+            $(".roll").trigger("click");
+        }
+        if(key.keyCode === 75){
+            $("")
+        }
+    });
+
+    $(".skjul").on("click", function(){
+        if(!$(".info").eq(0).hasClass("invis")){
+            $(".info").addClass("invis");
+            $(".guide").addClass("invis");
 
 
+            return;
+        }else{
+            $(".info").removeClass("invis");
+            $(".guide").removeClass("invis");
+            return;
+        }
 
+    })
 });
 
 
@@ -165,4 +177,11 @@ function holdAll(){
 //gør det modsatte af ovenstående funktion
 function freeAll(){
     $(".die").removeClass("held");
+}
+
+function completionCheck(){
+    for(i in getResults()){
+        if(!$(".results").eq(i).hasClass("locked")) return false;
+    }
+    return true;
 }

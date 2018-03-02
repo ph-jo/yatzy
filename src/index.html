@@ -9,6 +9,54 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+<div class="logo"><img src="images/lOGO.png">
+</div>
+
+
+
+<div class="info">
+    <p class="rules">Regler</p>
+
+    <ul>
+        <li>
+           I hver runde har spilleren 3 slag. Ved hvert terningslag må spilleren vælge de terninger fra, som han vil samle på. De resterende terninger bruges i næste slag.
+        </li>
+        <li>
+            Når spilleren har haft sine 3 kast, noteres hans/hendes point ud fra en valgfri kombination, og turen fortsætter til næste spiller.
+        </li>
+        <li>
+            På øverste del af pointblokken er målet at få så mange som muligt af hver (1´ere, 2´ere osv.) for at opnå sin bonus. For at få sin bonus, skal man have minimum 63 point (dvs. i gennemsnit 3 af 1´erne, 3 af 2´erne osv.). Bonus giver 50 point, som skrives i feltet under summen.
+        </li>
+        <li>
+            På nederste del af pointblokken opnås point således:
+        </li>
+        <ul>
+            <li>1 par (2 ens højst 12)</li>
+            <li>2 par (2 x 2 ens højst 22)</li>
+            <li>3 ens (3 ens højst 18)</li>
+            <li>4 ens (4 ens højst 24)</li>
+            <li>”Lille Straight” (1, 2, 3, 4, 5 giver 15)</li>
+            <li>”Stor Straight” (2, 3, 4, 5, 6 giver 20)</li>
+            <li>”Fuldt Hus” (3+2 ens højst 28)</li>
+            <li>Chance (alle øjne lægges sammen, højst 30)</li>
+            <li>Yatzy (5 ens giver 50 point)</li>
+        </ul>
+        <li>Alle point lægges sammen efter hver runde, og spilleren kan se sin totale score.</li>
+
+    </ul>
+</div>
+
+<div class="guide">
+    <p class="rules">Sådan spiller du!</p>
+    <ul>
+        <li>Tryk på Roll knappen for at slå med terningerne!</li>
+        <li>Du kan også trykke på genvejstasten 'j' for at slå.</li>
+        <li>Tryk på felterne efter du har slået op til 3 gange for at gemme det ønskede resultat.</li>
+        <li>Tryk på en terning for at låse dens værdi, så den ikke ændrer sig ved rul.</li>
+        <li>Når alle felter er udfyldt, vises din score :)</li>
+    </ul>
+
+</div>
 
 <div class="dicegroup">
     <p class="die" id="1"><img src="images/five.png"></p>
@@ -17,9 +65,9 @@
     <p class="die" id="4"><img src="images/four.png"></p>
     <p class="die" id="5"><img src="images/six.png"></p>
     <br>
-    <p id="throw">Roll the dice!</p>
+    <p id="throw">Rul med terningerne!</p>
 
-    <button class="roll" value="Roll!" >Roll!</button>
+    <button class="roll" value="Roll!" >Roll! (J)</button>
 </div>
 
 <div id="results">
@@ -63,12 +111,11 @@
     <p class="labels right">Total:</p><br>
     <input type="text" id="totalField" class="right input" readonly><br>
 
-    <button class="resetBtn" value="Reset game!">Reset game!</button>
-    <button class="debug" value="debug">Debug til far:)</button>
-    <button class="debugRoll" value="debugRoll">Snyderul :)</button>
+    <button class="resetBtn" value="Genstart spil">Genstart spil</button>
+    <button class="skjul" type="button" value="Vis/skjul regler">Vis/skjul regler</button>
+</div>
 
-
-
+<div id="hiscores" class="invis">
 
 </div>
 </body>

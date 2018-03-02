@@ -24,14 +24,13 @@
 //  Alle point lægges sammen efter hver runde, og spilleren kan se sin totale score.
 
 
-
+var scores = [];
 var dice = [
-    { value: 0, hold: false },
-    { value: 0, hold: false },
-    { value: 0, hold: false },
-    { value: 0, hold: false },
-    { value: 0, hold: false },
-    { value: 0, hold: false },
+    { value: 0},
+    { value: 0},
+    { value: 0},
+    { value: 0},
+    { value: 0}
     ];
 var turn = 0;
 var total = 0;
